@@ -1,7 +1,10 @@
+import ServicesSection from "./components/ServicesSection";
 
 
 export default function Home() {
   return (
-    <div>hi</div>
+    <div>
+      <ServicesSection/>
+    </div>
   );
 }
