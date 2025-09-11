@@ -1,10 +1,8 @@
-import dbConnect from "@/lib/bdConnect";
 import Image from "next/image";
 import React from "react";
 
 export default async function ServicesSection() {
-  const servicesCollection = await dbConnect("services"); 
-  const data = await servicesCollection.find().toArray();
+const data = []
 
   return (
     <div className="grid grid-cols-12 gap-4 ">
