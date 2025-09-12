@@ -1,5 +1,6 @@
 import handleApiError from "@/app/shard/handleApiError";
 import { collectionName, collections, dbConnect } from "@/lib/dbConnect";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
@@ -17,5 +18,20 @@ export async function POST(req) {
     );
   } catch (error) {
     return handleApiError();
+  }
+}
+
+
+export async function GET() {
+  try {
+    const collection = await dbConnect(collections.SERVICES);
+    const services = await collection.find().toArray();
+    return NextResponse.json(services);
+  } catch (error) {
+    console.error("API ERROR:", error);
+    return NextResponse.json(
+      { message: "Error fetching services", error: error.message },
+      { status: 500 }
+    );
   }
 }
