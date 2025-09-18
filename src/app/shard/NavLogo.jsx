@@ -9,6 +9,7 @@ export default function NavLogo() {
         width={65}
         height={50}
         alt="navbar-logo"
+        className=" lg:block hidden"
       ></Image>
     </div>
   );

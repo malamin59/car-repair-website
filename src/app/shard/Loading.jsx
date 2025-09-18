@@ -15,8 +15,8 @@ export default function Loading() {
       </motion.div>
       <motion.p
         className="ml-4 text-xl font-semibold text-gray-700"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}    
+                animate={{ opacity: 1 }}
         transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
       >
         Loading Services...
