@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import NavLogo from "./NavLogo";
+import Margin from "../components/margin/margin";
 export default function NavBar() {
   const links = (
     <>
@@ -28,7 +29,8 @@ export default function NavBar() {
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm px-2 lg:px-8 md:px-8">
+   <Margin>
+     <div className="navbar bg-base-100 shadow-sm px-2 lg:px-8 md:px-8">
       {" "}
       <div className="navbar-start">
         {" "}
@@ -76,7 +78,7 @@ export default function NavBar() {
           {/* */} {links}{" "}
         </ul>{" "}
       </div>{" "}
-      <div className="navbar-end">
+      <div className="navbar-end   gap-2">
         {" "}
         <Link
           href={"/"}
@@ -84,7 +86,14 @@ export default function NavBar() {
         >
           Appointment
         </Link>{" "}
+        <Link
+          href={"/register"}
+          className="text-red-500 btn-sm btn border-rose-400 rounded"
+        >
+          Login
+        </Link>{" "}
       </div>{" "}
     </div>
+   </Margin>
   );
 }
