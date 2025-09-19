@@ -5,6 +5,8 @@ import Image from "next/image";
 import React from "react";
 import Loading from "../shard/Loading";
 import GridLayout from "./GridLayout";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function ServicesSection() {
   const { data, isLoading, isError, error } = useQuery({
@@ -14,7 +16,6 @@ export default function ServicesSection() {
       return res.data;
     },
   });
-  console.table(data);
 
   if (isLoading) return <Loading />;
   if (isError) return <p>Error: {error.message}</p>;
@@ -22,7 +23,7 @@ export default function ServicesSection() {
   return (
     <GridLayout>
       {data?.map((items) => (
-        <div className="w-full shadow-xl rounded-xl  p-3 " key={items._id}>
+        <div className="w-full shadow-lg rounded-xl  p-4 " key={items._id}>
           <Image
             width={320}
             height={200}
@@ -31,7 +32,13 @@ export default function ServicesSection() {
             className="w-full h-48 object-cover rounded-xl"
           />
           <h2 className="my-2 font-bold text-xl">{items.title}</h2>
-          <p className="text-red-400 font-bold"> Price : {items.price}</p>
+          <div className="flex text-orange-500  justify-between">
+            <p className=" font-bold"> Price : {items.price}</p>
+            <Link className="" href={`/services/${items._id}`}>
+              {" "}
+              <FaArrowRight />
+            </Link>
+          </div>
         </div>
       ))}
     </GridLayout>

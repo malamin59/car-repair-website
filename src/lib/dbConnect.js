@@ -1,6 +1,10 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 // Import MongoDB driver and versioning API
 
+// const collectionNames = {
+//   servi
+// }
+
 const uri = process.env.MONGO_URI;
 const options = {
   serverApi: {

@@ -21,6 +21,7 @@ export async function POST(req) {
   }
 }
 
+/* GET THE SERVICES ALL COLLECTION  */
 
 export async function GET() {
   try {
@@ -35,3 +36,21 @@ export async function GET() {
     );
   }
 }
+
+/* GET THE SINGLE SERVICES COLLECTION */
+
+// export async function GET(req, { params }) {
+//   try {
+//     const collection = await dbConnect(collections.SERVICES);
+
+//     const service = await collection.findOne({ _id: new ObjectId(params.id) });
+
+//     if (!service) {
+//       return NextResponse.json({ message: "Service not found" }, { status: 404 });
+//     }
+
+//     return NextResponse.json(service);
+//   } catch (error) {
+//     return NextResponse.json({ message: error.message }, { status: 500 });
+//   }
+// }

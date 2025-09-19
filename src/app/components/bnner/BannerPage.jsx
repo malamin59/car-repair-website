@@ -1,10 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import BannerImage from "../../../../public/assets/images/banner/5.jpg";
+import Margin from "../margin/margin";
 
 export default function BannerPage() {
   return (
-    <div className="w-full lg:px-20 md:px-8 px-2 mt-3 mb-12 mx-auto">
+   <Margin>
+     <div className="w-full ">
       <div className="relative w-full h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-lg overflow-hidden">
         {/* Banner Image */}
         <Image
@@ -42,5 +44,6 @@ export default function BannerPage() {
         </div>
       </div>
     </div>
+   </Margin>
   );
 }
