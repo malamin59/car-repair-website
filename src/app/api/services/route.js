@@ -8,7 +8,7 @@ export async function POST(req) {
     body.createAt = new Date();
     const servicesCollection = await dbConnect(collections.SERVICES);
     const res = await servicesCollection.insertOne(body);
-    return Response.json(
+    return NextResponse.json(
       {
         success: true,
         message: "Data sent successfully!",

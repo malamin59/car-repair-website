@@ -32,7 +32,10 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = client.connect();
 }
 
-export const collections = { SERVICES: "Services-collection" };
+export const collections = { 
+  SERVICES: "Services-collection", 
+  UserCollection: "test_user"
+};
 
 export async function dbConnect(name) {
   const client = await clientPromise;

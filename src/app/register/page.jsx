@@ -4,6 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import LoginImage from "../components/logimage/LoginImage";
 import Margin from "../components/margin/margin";
+import { registerUser } from "../actions/auth/registerUser";
 
 export default function RegisterPage() {
   const {
@@ -13,9 +14,8 @@ export default function RegisterPage() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    // Call your API here
+  const onSubmit = async (data) => {
+   await  registerUser(data);
   };
 
   const password = watch("password");
@@ -29,9 +29,12 @@ export default function RegisterPage() {
         </div>
 
         {/* Form */}
-        <div className="flex-1 max-w-md w-full p-8  py-16 rounded-lg shadow-lg">
+        <div className="flex-1 max-w-md w-full p-8  lg:py-16 rounded-lg shadow-lg">
           <h1 className="text-3xl font-bold text-center mb-6">Sign Up</h1>
-          <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-8"
+          >
             {/* Email */}
             <div className="flex flex-col">
               <label className="text-sm font-semibold mb-1">Email</label>
@@ -48,7 +51,9 @@ export default function RegisterPage() {
                 })}
               />
               {errors.email && (
-                <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>
+                <span className="text-red-500 text-sm mt-1">
+                  {errors.email.message}
+                </span>
               )}
             </div>
 
@@ -68,13 +73,17 @@ export default function RegisterPage() {
                 })}
               />
               {errors.password && (
-                <span className="text-red-500 text-sm mt-1">{errors.password.message}</span>
+                <span className="text-red-500 text-sm mt-1">
+                  {errors.password.message}
+                </span>
               )}
             </div>
 
             {/* Confirm Password */}
             <div className="flex flex-col">
-              <label className="text-sm font-semibold mb-1">Confirm Password</label>
+              <label className="text-sm font-semibold mb-1">
+                Confirm Password
+              </label>
               <input
                 type="password"
                 className="border p-2 rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
