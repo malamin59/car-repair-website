@@ -1,22 +1,32 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { FaGithub, FaFacebook, FaGoogle, FaLinkedin } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 export default function SocialLoginButtons() {
+  const handleGithubLogin = async (providerName) => {
+    const result = await signIn(providerName, { redirect: false });
+    console.log(result);
+  };
+  const handleGoogleLogin = async (providerName) => {
+    const result = await signIn(providerName, { redirect: false });
+    console.log(result);
+  };
+
   return (
     <div className="flex justify-center  gap-6 text-3xl">
       {/* Google Login */}
       <button
-        onClick={() => signIn("google")}
-        className="text-red-500 hover:text-red-700"
+        onClick={handleGoogleLogin}
+        className=" cursor-pointer rounded-xl border-none "
       >
-        <FaGoogle />
+        <FcGoogle className="text-2xl" />
       </button>
 
       {/* GitHub Login */}
       <button
-        onClick={() => signIn("github")}
-        className="text-gray-800 hover:text-black"
+        onClick={() => handleGithubLogin("github")}
+        className="text-gray-800 cursor-pointer hover:text-black"
       >
         <FaGithub />
       </button>
@@ -24,7 +34,7 @@ export default function SocialLoginButtons() {
       {/* Facebook Login */}
       <button
         onClick={() => signIn("facebook")}
-        className="text-blue-600 hover:text-blue-800"
+        className="text-blue-600 cursor-pointer hover:text-blue-800"
       >
         <FaFacebook />
       </button>
@@ -32,7 +42,7 @@ export default function SocialLoginButtons() {
       {/* LinkedIn Login */}
       <button
         onClick={() => signIn("linkedin")}
-        className="text-blue-700 hover:text-blue-900"
+        className="text-blue-700 cursor-pointer hover:text-blue-900"
       >
         <FaLinkedin />
       </button>
