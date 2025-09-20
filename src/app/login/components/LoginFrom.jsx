@@ -6,16 +6,18 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import handleApiError from "@/app/shard/handleApiError";
 import toast from "react-hot-toast";
+import Loading from "@/app/shard/Loading";
+import SocialLoginButtons from "@/app/shard/SocialIcon/SocialIcon";
 
 export default function LoginFrom() {
   const router = useRouter();
   const {
     register,
     handleSubmit,
-     reset,
-    formState: { errors },
-  } = useForm();
+    reset,
 
+    formState: { errors, isSubmitting },
+  } = useForm();
   const onSubmit = async (data) => {
     try {
       const { email, password } = data;
@@ -28,16 +30,16 @@ export default function LoginFrom() {
       if (response.ok) {
         router.push("/");
         toast.success("login Successfully!");
-        reset
-      } 
-      
-      else {
+        reset;
+      } else {
         toast.error("login failed!");
       }
     } catch (errors) {
       return handleApiError();
     }
   };
+  if (isSubmitting) return <Loading />;
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
@@ -92,6 +94,12 @@ export default function LoginFrom() {
         >
           Sign In
         </button>
+        <div className="flex items-center ">
+          <div className="flex-grow border-t border-gray-300"></div>
+          <p className="mx-4 text-gray-500 text-center">Or Sign Up with</p>
+          <div className="flex-grow border-t border-gray-300"></div>
+        </div>
+        <SocialLoginButtons />
         <p className="text-center">
           new this site please
           <Link href={"/signIn"}>

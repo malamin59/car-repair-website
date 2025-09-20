@@ -5,7 +5,7 @@ import NavLogo from "./NavLogo";
 import Margin from "../components/margin/margin";
 import { signOut, useSession } from "next-auth/react";
 export default function NavBar() {
-  const { data: session, status } = useSession();
+  const { data, status } = useSession();
   const links = (
     <>
       {" "}
@@ -92,7 +92,13 @@ export default function NavBar() {
           {status == "authenticated" ? (
             <>
               {" "}
-              <button className="btn btn-sm text-orange-500 rounded" onClick={() => signOut()}> Signout</button>
+              <button
+                className="btn btn-sm text-orange-500 rounded"
+                onClick={() => signOut()}
+              >
+                {" "}
+                Signout
+              </button>
             </>
           ) : (
             <>

@@ -1,5 +1,6 @@
 "use client";
 import { registerUser } from "@/app/actions/auth/registerUser";
+import SocialLoginButtons from "@/app/shard/SocialIcon/SocialIcon";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -63,26 +64,6 @@ export default function LoginFrom() {
           )}
         </div>
 
-        {/* Confirm Password */}
-        {/* <div className="flex flex-col">
-          <label className="text-sm font-semibold mb-1">Confirm Password</label>
-          <input
-            type="password"
-            className="border p-2 rounded border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            placeholder="Confirm Password"
-            {...register("confirmPassword", {
-              required: "Confirm your password",
-              validate: (value) =>
-                value === password || "Passwords do not match",
-            })}
-          />
-          {errors.confirmPassword && (
-            <span className="text-red-500 text-sm mt-1">
-              {errors.confirmPassword.message}
-            </span>
-          )}
-        </div> */}
-
         {/* Submit Button */}
         <button
           type="submit"
@@ -90,7 +71,13 @@ export default function LoginFrom() {
         >
           Sign Up
         </button>
-         <p className="text-center">
+        <div className="flex items-center ">
+          <div className="flex-grow border-t border-gray-300"></div>
+          <p className="mx-4 text-gray-500 text-center">Or Sign Up with</p>
+          <div className="flex-grow border-t border-gray-300"></div>
+        </div>
+        <SocialLoginButtons />
+        <p className="text-center">
           already have an account please
           <Link href={"/login"}>
             {" "}
