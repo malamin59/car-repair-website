@@ -86,8 +86,9 @@ export default function NavBar() {
         >
           Appointment
         </Link>{" "}
+        
         <Link
-          href={"/register"}
+          href={"/login"}
           className="text-red-500 btn-sm btn border-rose-400 rounded"
         >
           Login
