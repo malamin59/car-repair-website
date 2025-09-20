@@ -64,7 +64,7 @@ export default function LoginFrom() {
         </div>
 
         {/* Confirm Password */}
-        <div className="flex flex-col">
+        {/* <div className="flex flex-col">
           <label className="text-sm font-semibold mb-1">Confirm Password</label>
           <input
             type="password"
@@ -81,7 +81,7 @@ export default function LoginFrom() {
               {errors.confirmPassword.message}
             </span>
           )}
-        </div>
+        </div> */}
 
         {/* Submit Button */}
         <button

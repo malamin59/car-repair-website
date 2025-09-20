@@ -1,21 +1,28 @@
 "use client";
-import { registerUser } from "@/app/actions/auth/registerUser";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import handleApiError from "@/app/shard/handleApiError";
 
 export default function LoginFrom() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
-    await registerUser(data);
+    try {
+      const { email, password } = data;
+      await signIn("credentials", { email, password , callbackUrl:'/'});
+      // router.push("/");
+    } catch (errors) {
+      return handleApiError();
+    }
   };
-  const password = watch("password");
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
@@ -63,9 +70,6 @@ export default function LoginFrom() {
           )}
         </div>
 
-        {/* Confirm Password */}
-   
-
         {/* Submit Button */}
         <button
           type="submit"
@@ -74,7 +78,7 @@ export default function LoginFrom() {
           Sign In
         </button>
         <p className="text-center">
-          new this site  please
+          new this site please
           <Link href={"/signIn"}>
             {" "}
             <span className="text-orange-500"> register </span>{" "}

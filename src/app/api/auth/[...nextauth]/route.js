@@ -1,33 +1,30 @@
-import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { loginUser } from "./loginUser";
 export const authOptions = {
- providers: [
-  CredentialsProvider({
-    name: 'Credentials',
-    credentials: {
-      username: { label: "Email", type: "text", placeholder: "enter email" },
-      password: { label: "Password", type: "password" }
-    },
-    async authorize(credentials, req) {
-      const res = await fetch("/your/endpoint", {
-        method: 'POST',
-        body: JSON.stringify(credentials),
-        headers: { "Content-Type": "application/json" }
-      })
-      const user = await res.json()
-      if (res.ok && user) {
-        return user
-      }
-      return null
-    }
-  })
-],
+  providers: [
+    CredentialsProvider({
+      name: "Credentials",
 
-pages:{
-signIn:'/login'
-}
-}
+      async authorize(credentials, req) {
+        const user = await loginUser(credentials);
+console.log(credentials)
+        console.log(user);
+       
+        if (user) {
+          return user;
+        } else {
+          return null;
+        }
+      },
+    }),
+  ],
 
-const handler = NextAuth(authOptions)
+  pages: {
+    signIn: "/login",
+  },
+};
 
-export { handler as GET, handler as POST }
+const handler = NextAuth(authOptions);
+
+export { handler as GET, handler as POST };
