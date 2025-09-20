@@ -1,8 +1,11 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import NavLogo from "./NavLogo";
 import Margin from "../components/margin/margin";
+import { signOut, useSession } from "next-auth/react";
 export default function NavBar() {
+  const { data: session, status } = useSession();
   const links = (
     <>
       {" "}
@@ -29,72 +32,80 @@ export default function NavBar() {
     </>
   );
   return (
-   <Margin>
-     <div className="navbar bg-base-100 shadow-sm px-2 lg:px-8 md:px-8">
-      {" "}
-      <div className="navbar-start">
+    <Margin>
+      <div className="navbar bg-base-100 shadow-sm px-2 lg:px-8 md:px-8">
         {" "}
-        <div className="dropdown">
+        <div className="navbar-start">
           {" "}
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost p-0 lg:hidden"
-          >
+          <div className="dropdown">
             {" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost p-0 lg:hidden"
             >
               {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
-            </svg>{" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {" "}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />{" "}
+              </svg>{" "}
+            </div>{" "}
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              {" "}
+              {/* */} {links}{" "}
+            </ul>{" "}
           </div>{" "}
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
+          <Link href={"/"}>
+            {" "}
+            <NavLogo />{" "}
+          </Link>{" "}
+        </div>{" "}
+        <div className="navbar-center hidden lg:flex">
+          {" "}
+          <ul className="menu menu-horizontal px-1">
             {" "}
             {/* */} {links}{" "}
           </ul>{" "}
         </div>{" "}
-        <Link href={"/"}>
+        <div className="navbar-end   gap-2">
           {" "}
-          <NavLogo />{" "}
-        </Link>{" "}
-      </div>{" "}
-      <div className="navbar-center hidden lg:flex">
-        {" "}
-        <ul className="menu menu-horizontal px-1">
-          {" "}
-          {/* */} {links}{" "}
-        </ul>{" "}
-      </div>{" "}
-      <div className="navbar-end   gap-2">
-        {" "}
-        <Link
-          href={"/"}
-          className="text-red-500 btn-sm btn border-rose-400 rounded"
-        >
-          Appointment
-        </Link>{" "}
-        
-        <Link
-          href={"/login"}
-          className="text-red-500 btn-sm btn border-rose-400 rounded"
-        >
-          Login
-        </Link>{" "}
-      </div>{" "}
-    </div>
-   </Margin>
+          <Link
+            href={"/"}
+            className="text-red-500 btn-sm border-none btn border-rose-400 rounded"
+          >
+            Appointment
+          </Link>{" "}
+          {status == "authenticated" ? (
+            <>
+              {" "}
+              <button className="btn btn-sm text-orange-500 rounded" onClick={() => signOut()}> Signout</button>
+            </>
+          ) : (
+            <>
+              <Link
+                href={"/login"}
+                className="text-red-500 btn-sm btn border-rose-400 rounded"
+              >
+                Login
+              </Link>{" "}
+            </>
+          )}
+        </div>{" "}
+      </div>
+    </Margin>
   );
 }

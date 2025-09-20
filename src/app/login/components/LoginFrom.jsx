@@ -5,20 +5,35 @@ import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import handleApiError from "@/app/shard/handleApiError";
+import toast from "react-hot-toast";
 
 export default function LoginFrom() {
   const router = useRouter();
   const {
     register,
     handleSubmit,
+     reset,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data) => {
     try {
       const { email, password } = data;
-      await signIn("credentials", { email, password , callbackUrl:'/'});
-      // router.push("/");
+      const response = await signIn("credentials", {
+        email,
+        password,
+        // callbackUrl: "/",
+        redirect: false,
+      });
+      if (response.ok) {
+        router.push("/");
+        toast.success("login Successfully!");
+        reset
+      } 
+      
+      else {
+        toast.error("login failed!");
+      }
     } catch (errors) {
       return handleApiError();
     }
