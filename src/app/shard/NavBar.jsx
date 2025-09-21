@@ -4,6 +4,7 @@ import React from "react";
 import NavLogo from "./NavLogo";
 import Margin from "../components/margin/margin";
 import { signOut, useSession } from "next-auth/react";
+import toast from "react-hot-toast";
 export default function NavBar() {
   const { data, status } = useSession();
   const links = (
@@ -31,6 +32,11 @@ export default function NavBar() {
       </li>{" "}
     </>
   );
+
+  const handleSigOut = () =>{
+    signOut()
+    toast.success('logout Successfully')
+  }
   return (
     <Margin>
       <div className="navbar bg-base-100 shadow-sm px-2 lg:px-8 md:px-8">
@@ -94,7 +100,7 @@ export default function NavBar() {
               {" "}
               <button
                 className="btn btn-sm text-orange-500 rounded"
-                onClick={() => signOut()}
+                onClick={() => handleSigOut()}
               >
                 {" "}
                 Signout

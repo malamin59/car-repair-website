@@ -29,7 +29,7 @@ export default function LoginFrom() {
       });
       if (response.ok) {
         router.push("/");
-        toast.success("login Successfully!");
+        // toast.success("login Successfully!");
         reset;
       } else {
         toast.error("login failed!");
