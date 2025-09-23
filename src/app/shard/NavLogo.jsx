@@ -5,12 +5,12 @@ export default function NavLogo() {
   return (
     <div>
       <Image
-        src={"/assets/logo.svg"}
-        width={65}
-        height={50}
-        alt="navbar-logo"
-        className=" lg:block hidden"
-      ></Image>
+  src="/assets/logo.svg"
+  alt="navbar-logo"
+  width={0}
+  height={0}
+  className="hidden lg:block w-[65px] h-auto"
+/>
     </div>
   );
 }

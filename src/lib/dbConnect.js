@@ -34,7 +34,8 @@ if (process.env.NODE_ENV === "development") {
 
 export const collections = { 
   SERVICES: "Services-collection", 
-  UserCollection: "test_user"
+  UserCollection: "test_user",
+  Services_data: "Services-data"
 };
 
 export async function dbConnect(name) {

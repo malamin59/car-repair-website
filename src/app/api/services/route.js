@@ -38,4 +38,3 @@ export async function GET() {
 }
 
 // /* GET THE SINGLE SERVICES COLLECTION */
-
