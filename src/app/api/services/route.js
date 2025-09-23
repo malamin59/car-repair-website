@@ -1,5 +1,5 @@
 import handleApiError from "@/app/shard/handleApiError";
-import { collectionName, collections, dbConnect } from "@/lib/dbConnect";
+import { collections, dbConnect } from "@/lib/dbConnect";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {

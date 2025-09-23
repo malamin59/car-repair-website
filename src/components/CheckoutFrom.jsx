@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -13,16 +14,22 @@ export default function CheckoutFrom({ isError, isLoading, service }) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const payload = {
       ...data,
       service_id: service.service_id,
       service_name: service?.title,
       service_image: service?.img,
     };
-    toast.success("Order Confirmed!");
-    console.log("Form Data:", payload);
-    reset();
+    // try {
+    //   await axios.post("/api/services/postServices", payload);
+    //   toast.success("Order Confirmed!");
+    //   reset();
+    // } catch (error) {
+    //   console.log(error);
+    //   toast.error(error.message || "Order to send data");
+    // }
+    console.log(payload)
   };
 
   if (isLoading) return <p>Loading...</p>;
@@ -102,7 +109,7 @@ export default function CheckoutFrom({ isError, isLoading, service }) {
           <label className="block font-semibold mb-1">Due Amount</label>
           <input
             type="text"
-            value={`$${service?.price}`}
+            defaultValue={`$${service?.price}`}
             readOnly
             {...register("dueAmount")}
             className="w-full rounded px-3 py-2 border border-gray-300 bg-gray-100 focus:outline-none"
