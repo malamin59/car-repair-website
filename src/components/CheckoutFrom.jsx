@@ -21,16 +21,15 @@ export default function CheckoutFrom({ isError, isLoading, service }) {
       service_name: service?.title,
       service_image: service?.img,
     };
-    // try {
-    //   await axios.post("/api/services/postServices", payload);
-    //   toast.success("Order Confirmed!");
-    //   reset();
-    // } catch (error) {
-    //   console.log(error);
-    //   toast.error(error.message || "Order to send data");
-    // }
-    console.log(payload)
-  };
+    try {
+      await axios.post("/api/services/postServices", payload);
+      toast.success("Order Confirmed!");
+      reset();
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message || "Order to send data");
+    }
+   };
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong</p>;
