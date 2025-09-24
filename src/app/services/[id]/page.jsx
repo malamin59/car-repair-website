@@ -1,5 +1,6 @@
 import Margin from "@/app/components/margin/margin";
 import { collections, dbConnect } from "@/lib/dbConnect";
+
 import { ObjectId } from "mongodb";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +18,7 @@ export default async function ServicesDetailsPage({ params }) {
       </Margin>
     );
   }
+
 
   return (
     <Margin>

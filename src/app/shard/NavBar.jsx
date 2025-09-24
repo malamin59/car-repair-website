@@ -24,7 +24,7 @@ export default function NavBar() {
       </li>{" "}
       <li>
         {" "}
-        <Link href={"/"}> Blog </Link>{" "}
+        <Link href={"/myBookings"}> My Bookings </Link>{" "}
       </li>{" "}
       <li>
         {" "}
