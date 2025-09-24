@@ -19,7 +19,7 @@ export async function POST(req) {
   } catch (error) {
     return handleApiError();
   }
-}
+} 
 
 /* GET THE SERVICES ALL COLLECTION  */
 

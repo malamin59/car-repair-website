@@ -45,7 +45,7 @@ export default function CheckoutFrom({ isError, isLoading, service }) {
         className="bg-white shadow rounded-lg p-6 grid grid-cols-1 sm:grid-cols-2 gap-4"
       >
         {/* Name */}
-        <div>
+        {/* <div>
           <label className="block font-semibold read-only: mb-1">Name</label>
           <input
             type="text"
@@ -58,7 +58,7 @@ export default function CheckoutFrom({ isError, isLoading, service }) {
           {errors.name && (
             <p className="text-red-500 text-sm">{errors.name.message}</p>
           )}
-        </div>
+        </div> */}
 
         {/* Email */}
         <div>

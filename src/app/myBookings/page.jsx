@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import Margin from "../components/margin/margin";
+import Loading from "../shard/Loading";
 
 export default function MyVBooking() {
   const { data: services = [], isLoading, isError } = useQuery({
@@ -13,13 +14,13 @@ export default function MyVBooking() {
     },
   });
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading) return <Loading/>
   if (isError) return <p className="text-center text-red-500">Failed to load data</p>;
 
   return (
    <Margin>
-     <div className="p-4">
-      <table className="w-full border-collapse">
+     <div className="overflow-x-auto">
+      <table className="w-full min-w-[600px] border-collapse">
         <thead>
           <tr className="bg-gray-100 text-left">
             <th className="p-3">Image</th>
