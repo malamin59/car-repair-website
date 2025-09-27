@@ -4,16 +4,9 @@ import axios from "axios";
 import React from "react";
 import Margin from "../components/margin/margin";
 import Loading from "../shard/Loading";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import Delete from "./Delete";
 
 export default function MyVBooking() {
-  const { session, status } = useSession();
-  const router = useRouter();
-  if (status === "loading") return <Loading />;
-  if (!session) {
-    router.push("/login");
-  }
   const {
     data: services = [],
     isLoading,
@@ -29,15 +22,13 @@ export default function MyVBooking() {
   if (isLoading) return <Loading />;
   if (isError)
     return <p className="text-center text-red-500">Failed to load data</p>;
-  if (services.length === 0) {
-    <Margin>
-      <p>no Services found </p>
-    </Margin>;
-  }
+
+ 
+  console.log(services)
   return (
     <Margin>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[600px] border-collapse">
+        <table className="w-full min-w-[800px] border-collapse">
           <thead>
             <tr className="bg-gray-100 text-left">
               <th className="p-3">Image</th>
@@ -45,6 +36,7 @@ export default function MyVBooking() {
               <th className="p-3">Due Amount</th>
               <th className="p-3">Date</th>
               <th className="p-3">Status</th>
+              <th className="p-3 pl-12">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -73,9 +65,19 @@ export default function MyVBooking() {
 
                 {/* Status */}
                 <td className="p-3">
-                  <span className="bg-red-500 text-white px-3 py-1 rounded">
+                  <button className="bg-red-500 text-white px-3 py-1 rounded">
                     Pending
+                  </button>
+                </td>
+                {/* Status */}
+                <td  className="flex gap-1 mt-6">
+                  <button className="bg-blue-800 cursor-pointer text-white px-3 py-1 rounded">
+                    update
+                  </button>
+                  <span className="bg-orange-500 cursor-pointer text-white px-3 py-1 rounded">
+                    view
                   </span>
+                  <Delete id={service._id}/>
                 </td>
               </tr>
             ))}
