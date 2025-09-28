@@ -71,8 +71,7 @@ export async function DELETE(req, { params }) {
 
 export async function GET(req, { params }) {
   try {
-    // params is NOT a promise here → no need to await
-    const { id } =  params;
+    const { id } = await params;
 
     const collection = await dbConnect(collections.SERVICES);
 

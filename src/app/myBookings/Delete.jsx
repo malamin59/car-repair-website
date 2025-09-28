@@ -20,8 +20,7 @@ export default function Delete({ id }) {
     },
   });
   const handleDelete = () => {
-    if (confirm("Are you sure you went to delete the data"))
-      deleteServices(id);
+    deleteServices(id);
   };
 
   return (
@@ -30,7 +29,7 @@ export default function Delete({ id }) {
       disabled={isLoading}
       className="bg-red-500 hover:bg-red-600 cursor-pointer text-white px-3 py-1 rounded disabled:opacity-50"
     >
-        {isLoading ? 'Deleting...': 'Delete'}
+      {isLoading ? "Deleting..." : "Delete"}
     </button>
   );
 }

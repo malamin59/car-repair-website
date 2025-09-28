@@ -5,6 +5,7 @@ import React from "react";
 import Margin from "../components/margin/margin";
 import Loading from "../shard/Loading";
 import Delete from "./Delete";
+import Link from "next/link";
 
 export default function MyVBooking() {
   const {
@@ -22,9 +23,12 @@ export default function MyVBooking() {
   if (isLoading) return <Loading />;
   if (isError)
     return <p className="text-center text-red-500">Failed to load data</p>;
-
- 
-  console.log(services)
+  if (services.length === 0)
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-4xl font-semibold text-gray-500">No data found</p>
+      </div>
+    );
   return (
     <Margin>
       <div className="overflow-x-auto">
@@ -70,14 +74,14 @@ export default function MyVBooking() {
                   </button>
                 </td>
                 {/* Status */}
-                <td  className="flex gap-1 mt-6">
-                  <button className="bg-blue-800 cursor-pointer text-white px-3 py-1 rounded">
+                <td className="flex gap-1 mt-6">
+                  <Link href={`/updateMyBooking/${service._id}`} className="bg-blue-800 cursor-pointer text-white px-3 py-1 rounded">
                     update
-                  </button>
+                  </Link   >
                   <span className="bg-orange-500 cursor-pointer text-white px-3 py-1 rounded">
                     view
                   </span>
-                  <Delete id={service._id}/>
+                  <Delete id={service._id} />
                 </td>
               </tr>
             ))}
